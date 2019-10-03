@@ -26,15 +26,17 @@ public class SolutionLangParser {
     public static String segment(String text, String[] dict) {
         String word, r = "";
 
-        for (int i = 0; i < text.length(); i++) {
+        for (int i = 0; i <= text.length(); i++) {
             if ((word = contains(dict, text.substring(0, i))) != null) { // found word in dict
-                if((r = segment(text.substring(i, text.length()-1), dict)) != null) { // recursive call found word
+                String remaining = text.substring(i, text.length());
+                if(remaining.isEmpty()) return word;
+                if((r = segment(remaining, dict)) != null) { // recursive call found word
+                    System.out.println("r:"+r);
                     return word.concat(" ").concat(r);
-                } else { // recursive call never found word
-                    return r;
                 }
+
             }
         }
-        return r;
+        return null;
     }
 }
