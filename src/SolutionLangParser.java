@@ -31,7 +31,6 @@ public class SolutionLangParser {
                 String remaining = text.substring(i, text.length());
                 if(remaining.isEmpty()) return word;
                 if((r = segment(remaining, dict)) != null) { // recursive call found word
-                    System.out.println("r:"+r);
                     return word.concat(" ").concat(r);
                 }
 
